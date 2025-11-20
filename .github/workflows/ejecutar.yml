@@ -1,3 +1,5 @@
+# .github/workflows/ejecutar.yml
+
 name: Ejecutar
 
 on:
@@ -10,16 +12,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1. Este paso descarga tu código en el runner
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # 2. Este paso configura Python
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
+      # 3. Este paso instala las dependencias desde el archivo requirements.txt
+      #    Asegúrate de que este archivo exista en la raíz de tu proyecto.
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      # 4. Este paso ejecuta tus pruebas
       - name: Run tests
         run: pytest
