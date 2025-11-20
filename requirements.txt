@@ -1,0 +1,5 @@
+# requirements.txt
+pytest
+requests
+numpy
+flask
