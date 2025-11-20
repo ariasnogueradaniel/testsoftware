@@ -1,3 +1,5 @@
+# .github/workflows/ejecutar.yml
+
 name: Ejecutar
 
 on:
@@ -16,12 +18,14 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.14'  # Use the same version as in your error log
+          python-version: '3.x' # Puedes especificar una versión exacta como '3.10' o '3.11' si lo necesitas
 
       - name: Install dependencies
-        working-directory: ${{ github.workspace }}  # Ensure we're in the root
+        # ¡IMPORTANTE! Esto asegura que el comando se ejecuta desde la raíz del repositorio.
+        working-directory: ${{ github.workspace }}
         run: pip install -r requirements.txt
 
       - name: Run tests
-        working-directory: ${{ github.workspace }} # recommended to keep consistent
+        # También es buena práctica ejecutar las pruebas desde la raíz.
+        working-directory: ${{ github.workspace }}
         run: pytest
